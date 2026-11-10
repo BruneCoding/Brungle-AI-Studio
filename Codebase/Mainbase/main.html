@@ -1,0 +1,310 @@
+<head>
+    <!-- Necessary -->
+    <title> Studio </title>
+    <link rel="icon" type="image/x-icon" href="../../Assets/Favicon.png"></link>
+    <link href="main.css" rel="stylesheet"></link>
+    <script src="https://kit.fontawesome.com/bb91950169.js" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+    <script src="setting.js"></script>
+    <script src="../groq.js"></script>
+</head>
+
+<!-- Main Code Body -->
+    <div class="main-container">
+        <div class="left-panel">
+            <div class="sidebar">
+                <div class="top-sidebar">
+                    <div class="sidebar-item">
+                        <div class="account-pfp">
+                            <img id="account-photo" src="../../Assets/Test.png"></img>
+                            <i class="fa-solid fa-gears hidden"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-sidebar">
+                    <div class="sidebar-item">
+                        <i class="fa-solid fa-house fa-xl unused"></i>
+                    </div>
+                    <div class="sidebar-item">
+                        <i class="fa-solid fa-wand-magic-sparkles fa-xl used"></i>
+                    </div>
+                    <div class="sidebar-item">
+                        <i class="fa-solid fa-message fa-xl nused"></i>
+                    </div>
+                </div>
+                <div class="bottom-sidebar">
+                    <div class="sidebar-item">
+                        <img src=""></img>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="top-bar">
+                <div class="top-left-bar">
+                    <button class="chat-setting-btn top-bar-btn">
+                        <div class="inner-content">
+                            <div class="icon" style="margin-right: 1.15vh !important">
+                                    <i class="fa-solid fa-brain"></i>
+                                </div>
+                                <div class="text"> GPT OSS 120B </div>
+                        </div>
+                    </button>
+                </div>
+                <div class="top-center-bar">
+                    <button class="chat-setting-btn top-bar-btn" id="top-bar-btn-bro">
+                                <input class="text-name" placeholder="">
+                            </input>
+                    </button>
+                </div>
+                <div class="top-right-bar"></div>
+            </div>
+            <div class="main-content-area">
+
+                <div class="welcome-chat-container">
+
+                    <div class="top-welcome-cont">
+                        <div class="main-logo">
+                        </div>
+                    </div>
+
+                    <div class="mid-welcome-cont">
+                        <h3> Welcome to Studio </h3>
+                        <h1> How can I help? </h1>
+                    </div>
+
+                    <div class="bot-welcome-cont">
+                        <div class="actions-btn first">
+                            <h3> Create 3D Objects with Objectifier </h3>
+                            <div class="images-cont">
+                                <div class="images-item" style="background-image: url('https://i.pinimg.com/736x/ee/69/df/ee69dfd1b91dd98063e4094f60b81071.jpg')"></div>
+                                <div class="images-item"></div>
+                            </div>
+                        </div>
+                        <div class="actions-btn second">
+                            <h3> Write me a extract from a comic</h3>
+                            <div class="images-cont">
+                                <div class="images-item"></div>
+                                <div class="images-item"></div>
+                            </div>
+                        </div>
+                        <div class="actions-btn third">
+                            <h3> Help me to create a video </h3>
+                            <div class="images-cont">
+                                <div class="images-item"></div>
+                                <div class="images-item"></div>
+                                <div class="images-item"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="chat-container">
+
+                    <div class="blanky-doc">
+
+                    </div>
+
+
+                   
+                </div>
+                <div class="chat-input-area">
+                    <div class="top-chat-input">
+                        <div class="refrainer-top">
+                            <button class="chat-setting-btn" onclick="openMic()">
+                                <div class="text">Microphone</div>
+                                <div class="icon" style="margin-left: 1vh; margin-right: .25vh !important;">
+                                    <i class="fa-solid fa-microphone-slash"></i>
+                                </div>
+                                
+                            </button>
+                            <button class="chat-setting-btn" onclick="voiceMode()">
+                                <div class="text">Voice</div>
+                                <div class="icon" style="margin-left: 1vh; margin-right: .25vh !important;">
+                                    <i class="fa-solid fa-phone-volume"></i>
+                                </div>
+                                
+                            </button>
+                        </div>
+                    </div>
+                    <div class="main-chat-input">
+                        <div class="chat-input-container">
+                            <textarea class="chat-input" placeholder="Ask me anything..." id="chat-input-system"></textarea>
+                        </div>
+                        <div class="bottom-chat-input">
+                            <div class="left-bottom-chat-input">
+                                <button class="chat-setting-btn" onclick="attachDocument()">
+                                <div class="icon">
+                                    <i class="fas fa-paperclip"></i>
+                                </div>
+                                <div class="text">Attach</div>
+                            </button>
+
+                            <div class="dropdown-content">
+                                    <div class="dropdown-item useds" onclick="writingStyle('FRIENDLY', this)">Friendly</div>
+                                    <div class="dropdown-item" onclick="writingStyle('FAIRLY CREATIVE AND EXPERIMENTAL', this)">Creative</div>
+                                    <div class="dropdown-item" onclick="writingStyle('CONCISE AND DETAILED. AS LITTLE AND SHORT AS POSSIBLE, WHILE STILL PROVIDING RELEVANT INFORMATION', this)">Concise</div>
+                                    <div class="dropdown-item" onclick="openSettings()">Try More</div>
+                                    <div class="dropdown-item disabled" onclick="writingStyle('None')">Custom</div>
+                                </div>
+
+                            <button class="chat-setting-btn" onclick="toggleDropdown()" id="dropdown-button">
+                                <div class="dropdown-top">
+                                    <div class="text">Writing Style</div>
+                                    <div class="icon" id="dropdown-caret">
+                                        <i class="fas fa-caret-down"></i>
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="chat-setting-btn" onclick="searchWeb()">
+                                <div class="icon" style="margin-left: .5vh; margin-right: .5vh !important;">
+                                    <i class="fa-solid fa-globe"></i>
+                                </div>
+                                
+                            </button>
+                            </div>
+                            <div class="right-bottom-chat-input">
+                                <div class="char-count" id="char-count">
+                                    <h1 id="wpm-count"> WPM: </h1>
+                                    <h1><span id="current-count">0</span> / <span class="char-amount">UNLIMITED</span></h1>
+                                </div>
+                                <div class="chat-toggle-btn">
+                                    <input type="checkbox" class="chat-toggle-citation" id="chat-toggle-citation"></input>
+                                    <span class="toggle-text">Citation</span>
+                                </div>
+                                <div class="chat-setting-btn chat-send-btn">
+                                    <div class="icon" style="aspect-ratio: 1/1;" id="sendBTN">
+                                        <i class="fa-solid fa-paper-plane"></i>
+                                        <i class="fa-solid fa-check" style="display: none; margin-bottom: -2px; z-index: 9;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="invisible-bottom">
+                <div class="left-invis">
+                    <div class="attachment-container">
+                <div class="vertical-attacher-cont" id="attach-doc-2" onclick="imgChoose(attach-doc-2)">
+                    <i class="fa-jelly-fill fa-regular fa-plus"></i>
+                </div>
+                <div class="vertical-attacher-cont other" id="attach-doc-1" onclick="imgChoose(attach-doc-1)">
+                    <i class="fa-jelly-fill fa-regular fa-plus"></i>
+                </div>
+            </div>
+                </div>
+                <div class="mid-invis"></div>
+                <div class="right-invis"></div>
+            </div>
+        </div>
+    </div>
+    <div class="blur-container">
+        <div class="setting-container">
+            <div class="setting-sidebar">
+                <button class="setting-item active" onclick="settingSelect(this)">
+                <div class="left-icon">
+                    <i class="fa-solid fa-cog"></i>
+                </div>
+                <div class="setting-text">
+                    <h3> General </h3>
+                </div>
+                </button>
+                <button class="setting-item" onclick="settingSelect(this)">
+                <div class="left-icon">
+                    <i class="fa-solid fa-bell fa-shake" style="--fa-animation-delay: 1000000000000s;"></i> 
+                </div>
+                <div class="setting-text">
+                    <h3> Sounds </h3>
+                </div>
+                </button>
+                <button class="setting-item" onclick="settingSelect(this)">
+                <div class="left-icon">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <div class="setting-text">
+                    <h3> Personalisation </h3>
+                </div>
+                </button>
+                <button class="setting-item" onclick="settingSelect(this)">
+                <div class="left-icon">
+                    <i class="fa-solid fa-puzzle-piece"></i>
+                </div>
+                <div class="setting-text">
+                    <h3> Addons </h3>
+                </div>
+                </button>
+                <button class="setting-item" onclick="settingSelect(this)">
+                <div class="left-icon">
+                    <i class="fa-solid fa-database"></i>
+                </div>
+                <div class="setting-text">
+                    <h3> Data Controls </h3>
+                </div>
+                </button>
+                <button class="setting-item" onclick="settingSelect(this)">
+                <div class="left-icon">
+                    <i class="fa-solid fa-key"></i>
+                </div>
+                <div class="setting-text">
+                    <h3> Security </h3>
+                </div>
+                </button>
+
+                <button class="setting-close-btn">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="setting-view">
+                <div class="top-nav">
+                    <h3 id="top-nav-text"> General </h3>
+                </div>
+                <div class="setting-viewport">
+                    <div class="long-range-weapon" style="opacity: 0.42;"></div>
+                <div class="action-container">
+                    <div class="actions-left">
+                        <h3> Theme </h3>
+                    </div>
+                    <div class="actions-right">
+                        <div class="actions-choices">
+                            <h3> Dark </h3>
+                            <div class="icon-holder-actions">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="long-range-weapon"></div>
+                <div class="action-container">
+                    <div class="actions-left">
+                        <h3> Accent Color </h3>
+                    </div>
+                    <div class="actions-right">
+                        <div class="actions-choices">
+                            <h3> Yellow </h3>
+                            <div class="icon-holder-actions">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="long-range-weapon"></div>
+                <div class="action-container">
+                    <div class="actions-left">
+                        <h3> Spoken Language </h3>
+                    </div>
+                    <div class="actions-right">
+                        <div class="actions-choices">
+                            <h3> English (UK) </h3>
+                            <div class="icon-holder-actions">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="long-range-weapon"></div>
+                </div>
+            </div>
+        </div>
+    </div>
